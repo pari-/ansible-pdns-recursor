@@ -1,0 +1,11 @@
+---
+
+- name: install packages
+  apt: >
+    name="{{ item }}"
+    update_cache="{{ pdns_recursor_install_apt_update_cache|default(omit) }}"
+    cache_valid_time="{{ pdns_recursor_install_apt_cache_valid_time|default(omit) }}"
+    state="{{ pdns_recursor_install_apt_state }}"
+  with_items:
+    - "{{ pdns_recursor_install_apt_packages }}"
+

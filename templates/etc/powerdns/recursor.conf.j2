@@ -1,0 +1,13 @@
+{% for pdns_recursor_config_param in pdns_recursor_config|sort %}
+{% if pdns_recursor_config[pdns_recursor_config_param] %}
+{% if pdns_recursor_config[pdns_recursor_config_param] is string %}
+{{ pdns_recursor_config_param }}={{ pdns_recursor_config[pdns_recursor_config_param]|lower }}
+{% elif pdns_recursor_config[pdns_recursor_config_param] is number %}
+{{ pdns_recursor_config_param }}={{ pdns_recursor_config[pdns_recursor_config_param]|lower }}
+{% elif pdns_recursor_config[pdns_recursor_config_param] is iterable %}
+{{ pdns_recursor_config_param }}={{ pdns_recursor_config[pdns_recursor_config_param]|sort|join(',') }}
+{% endif %}
+{% else %}
+#{{ pdns_recursor_config_param }}
+{% endif %}
+{% endfor %}

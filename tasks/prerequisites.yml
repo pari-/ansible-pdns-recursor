@@ -1,0 +1,16 @@
+---
+
+- name: fail unless we run on a supported distribution
+  fail: >
+    msg="Unfortunately, the 'pdns_recursor'-role is not supported on {{ ansible_distribution_release }}! :-("
+  when: ansible_distribution_release|lower not in pdns_recursor_prerequisites_supported_distribution_releases
+
+- name: install package dependencies
+  apt: >
+    name="{{ item }}"
+    update_cache="{{ pdns_recursor_prerequisites_apt_update_cache|default(omit) }}"
+    cache_valid_time="{{ pdns_recursor_prerequisites_apt_cache_valid_time|default(omit) }}"
+    state="{{ pdns_recursor_prerequisites_apt_state }}"
+  with_items:
+    - "{{ pdns_recursor_prerequisites_apt_packages }}"
+

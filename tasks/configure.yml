@@ -1,0 +1,6 @@
+---
+
+- name: generate configuration file
+  template: >
+    src="etc/powerdns/recursor.conf.j2"
+    dest="{{ pdns_recursor_config_template_dest }}"
