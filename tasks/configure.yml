@@ -4,3 +4,5 @@
   template: >
     src="etc/powerdns/recursor.conf.j2"
     dest="{{ pdns_recursor_config_template_dest }}"
+  notify:
+    - restart pdns_recursor

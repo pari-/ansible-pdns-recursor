@@ -21,6 +21,7 @@ pdns_recursor_install_apt_update_cache: "yes"
 pdns_recursor_install_apt_cache_valid_time: 3600
 
 pdns_recursor_config_template_dest: "/etc/powerdns/recursor.conf"
+pdns_recursor_service_name: "pdns-recursor"
 
 pdns_recursor_config:
   allow-from:
