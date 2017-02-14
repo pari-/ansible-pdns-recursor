@@ -2,5 +2,5 @@
 
 - name: restart pdns_recursor
   service: >
-    name="{{ pdns_recursor_service_name }}"
+    name="{{ pdns_recursor_configure_service_name }}"
     state=restarted

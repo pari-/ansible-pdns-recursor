@@ -1,3 +1,5 @@
+{{ '#' }} {{ ansible_managed }}
+
 {% for pdns_recursor_config_param in pdns_recursor_config|sort %}
 {% if pdns_recursor_config[pdns_recursor_config_param] is defined %}
 {% if pdns_recursor_config[pdns_recursor_config_param] is string %}

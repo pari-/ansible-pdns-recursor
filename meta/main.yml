@@ -6,4 +6,4 @@ galaxy_info:
     - Recursor
     - PDNS
     - PowerDNS
-  dependencies:
+  dependencies: []
