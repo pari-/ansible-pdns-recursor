@@ -141,9 +141,21 @@ Available variables are listed below, along with default values (see defaults/ma
   >
   > `['wheezy', 'jessie', 'precise', 'trusty', 'utopic', 'vivid', 'wily', 'xenial', 'yakkety']`
 
+- `pdns_recursor_prerequisites_apt_repository_repo_list`
+
+  > A list of additional apt repositories to add.
+  >
+  > ['deb http://ftp.debian.org/debian jessie-backports main']
+
+- `pdns_recursor_prerequisites_apt_repository_state`
+
+  > A source string state. 
+  >
+  > "present"
+
 - `pdns_recursor_prerequisites_apt_packages`
 
-  > A list of apt package dependencyies.
+  > A list of apt package dependencies.
   >
   > `[]`
 
@@ -164,6 +176,12 @@ Available variables are listed below, along with default values (see defaults/ma
   > Update the apt cache if its older than the x seconds.
   >
   > `3600`
+
+- `pdns_recursor_prerequisites_apt_default_release`
+
+  > Corresponds to the `-t` option for apt and sets pin priorities.
+  >
+  > `jessie`
 
 #### install
 
@@ -190,6 +208,12 @@ Available variables are listed below, along with default values (see defaults/ma
   > Update the apt cache if its older than the x seconds.
   >
   > `3600`
+
+- `pdns_recursor_install_apt_default_release`
+
+  > Corresponds to the `-t` option for apt and sets pin priorities.
+  >
+  > `jessie-backports`
 
 #### configure
 
