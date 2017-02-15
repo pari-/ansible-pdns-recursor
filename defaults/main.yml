@@ -15,11 +15,6 @@ pdns_recursor_prerequisites_supported_distribution_releases:
 pdns_recursor_prerequisites_apt_repository_repo_list:
   - "deb http://ftp.debian.org/debian jessie-backports main"
 pdns_recursor_prerequisites_apt_repository_state: "present"
-pdns_recursor_prerequisites_apt_packages: []
-pdns_recursor_prerequisites_apt_state: "present"
-pdns_recursor_prerequisites_apt_update_cache: "yes"
-pdns_recursor_prerequisites_apt_cache_valid_time: 3600
-pdns_recursor_prerequisites_apt_default_release: "jessie"
 
 #
 # install

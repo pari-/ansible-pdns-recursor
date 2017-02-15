@@ -153,36 +153,6 @@ Available variables are listed below, along with default values (see defaults/ma
   >
   > "present"
 
-- `pdns_recursor_prerequisites_apt_packages`
-
-  > A list of apt package dependencies.
-  >
-  > `[]`
-
-- `pdns_recursor_prerequisites_apt_state`
-
-  > Indicates the desired package state.
-  >
-  > `"present"`
-
-- `pdns_recursor_prerequisites_apt_update_cache`
-
-  > Run the equivalent of apt-get update before the operation.
-  >
-  > `"yes"`
-
-- `pdns_recursor_prerequisites_apt_cache_valid_time`
-
-  > Update the apt cache if its older than the x seconds.
-  >
-  > `3600`
-
-- `pdns_recursor_prerequisites_apt_default_release`
-
-  > Corresponds to the `-t` option for apt and sets pin priorities.
-  >
-  > `jessie`
-
 #### install
 
 - `pdns_recursor_install_apt_packages`

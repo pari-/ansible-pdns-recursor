@@ -11,14 +11,3 @@
     state="{{ pdns_recursor_prerequisites_apt_repository_state }}"
   with_items:
     - "{{ pdns_recursor_prerequisites_apt_repository_repo_list }}"
-
-- name: install package dependencies
-  apt: >
-    name="{{ item }}"
-    update_cache="{{ pdns_recursor_prerequisites_apt_update_cache|default(omit) }}"
-    cache_valid_time="{{ pdns_recursor_prerequisites_apt_cache_valid_time|default(omit) }}"
-    state="{{ pdns_recursor_prerequisites_apt_state }}"
-    default_release="{{ pdns_recursor_prerequisites_apt_default_release }}"
-  with_items:
-    - "{{ pdns_recursor_prerequisites_apt_packages }}"
-
