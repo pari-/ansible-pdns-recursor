@@ -3,7 +3,7 @@
 - name: fail unless we run on a supported distribution
   fail: >
     msg="Unfortunately, the 'pdns_recursor'-role is not supported on {{ ansible_distribution_release }}! :-("
-  when: ansible_distribution_release|lower not in pdns_recursor_prerequisites_supported_distribution_releases
+  when: ansible_distribution_release|lower not in pdns_recursor_prerequisites_supported_distribution_release_list
 
 - name: add additional repositories
   apt_repository: >

@@ -3,7 +3,7 @@
 #
 # prerequisites
 #
-pdns_recursor_prerequisites_supported_distribution_releases:
+pdns_recursor_prerequisites_supported_distribution_release_list:
   - "wheezy"
   - "jessie"
   - "stretch"

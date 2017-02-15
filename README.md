@@ -1,4 +1,4 @@
-# ansible-pdns-recursor
+# pdns-recursor
 
 An Ansible role which installs and configures PowerDNS recursor 
 
@@ -131,67 +131,25 @@ For more information about each option, please see [Upstream Recursor Settings](
 
 Available variables are listed below, along with default values (see defaults/main.yml):
 
+
+variable | default | type | notes
+-------- | ------- | ---- | -----
+`pdns_recursor_configure_config` | `{}` | dict | none
+
 ### Role Internals
 
-#### prerequisites
-
-- `pdns_recursor_prerequisites_supported_distribution_releases`
-
-  > A list of distribution releases this role supports.
-  >
-  > `['wheezy', 'jessie', 'precise', 'trusty', 'utopic', 'vivid', 'wily', 'xenial', 'yakkety']`
-
-- `pdns_recursor_prerequisites_apt_repository_repo_list`
-
-  > A list of additional apt repositories to add.
-  >
-  > ['deb http://ftp.debian.org/debian jessie-backports main']
-
-- `pdns_recursor_prerequisites_apt_repository_state`
-
-  > A source string state. 
-  >
-  > "present"
-
-#### install
-
-- `pdns_recursor_install_apt_packages`
-
-  > A list of apt package dependencyies.
-  >
-  > `['pdns-recursor']`
-
-- `pdns_recursor_install_apt_state`
-
-  > Indicates the desired package state.
-  >
-  > `"present"`
-
-- `pdns_recursor_install_apt_update_cache`
-
-  > Run the equivalent of apt-get update before the operation.
-  >
-  > `"yes"`
-
-- `pdns_recursor_install_apt_cache_valid_time`
-
-  > Update the apt cache if its older than the x seconds.
-  >
-  > `3600`
-
-- `pdns_recursor_install_apt_default_release`
-
-  > Corresponds to the `-t` option for apt and sets pin priorities.
-  >
-  > `jessie-backports`
-
-#### configure
-
-- `pdns_recursor_configure_template_dest`
-
-  > The path of the 'pdns_recursor'-configuration file
-  >
-  > `/etc/powerdns/recursor.conf`
+variable | default | type | notes
+-------- | ------- | ---- | -----
+`pdns_recursor_prerequisites_apt_repository_repo_list` | `['deb http://ftp.debian.org/debian jessie-backports main']` | list | A list of additional apt repositories to add
+`pdns_recursor_prerequisites_apt_repository_state` | `'present'` | string | A repository source string state
+`pdns_recursor_prerequisites_supported_distribution_release_list` | `['wheezy','jessie','stretch','sid','precise','trusty','xenial','yakkety']` | list | A list of distribution releases supported by this role
+`pdns_recursor_configure_service_name` | `'pdns-recursor'` | string | none
+`pdns_recursor_configure_template_dest` | `'/etc/powerdns/recursor.conf'` | string | Destination of the role's "main configration"-file
+`pdns_recursor_install_apt_cache_valid_time` | `'3600'` | string | Update the apt cache if its older than x seconds
+`pdns_recursor_install_apt_default_release` | `'jessie-backports'` | string | Retrieve packages from a specific  distribution (`apt-get install -t`)
+`pdns_recursor_install_apt_packages` | `['pdns-recursor']` | list | A list of neede packages this role needs
+`pdns_recursor_install_apt_state` | `'present'` | string | An indicator for the desired package('s) state
+`pdns_recursor_install_apt_update_cache` | `'yes'` | string | Run the equivalent of apt-get update before the operation
 
 ## Dependencies
 

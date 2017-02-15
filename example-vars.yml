@@ -9,7 +9,7 @@ pdns_recursor_config:
   config-dir: "/etc/powerdns/"
   daemon: "yes"
   forward-zones-recurse: ".=8.8.4.4;8.8.8.8"
-  local-address: "127.0.0.1, {{ ansible_default_ipv4.address }}"
+  local-address: "127.0.0.1,{{ ansible_default_ipv4.address }}"
   local-port: 53
   log-common-errors: "yes"
   logging-facility: 0
