@@ -3,31 +3,24 @@
 #
 # prerequisites
 #
-pdns_recursor_prerequisites_supported_distribution_release_list:
-  - "wheezy"
+pdns_recursor_supported_distro_list:
   - "jessie"
-  - "stretch"
-  - "sid"
-  - "precise"
-  - "trusty"
-  - "xenial"
-  - "yakkety"
-pdns_recursor_prerequisites_apt_repository_repo_list:
+pdns_recursor_repo_list:
   - "deb http://ftp.debian.org/debian jessie-backports main"
-pdns_recursor_prerequisites_apt_repository_state: "present"
+pdns_recursor_repo_state: "present"
 
 #
 # install
 #
-pdns_recursor_install_apt_packages:
+pdns_recursor_package_list:
   - "pdns-recursor"
-pdns_recursor_install_apt_state: "present"
-pdns_recursor_install_apt_update_cache: "yes"
-pdns_recursor_install_apt_cache_valid_time: 3600
-pdns_recursor_install_apt_default_release: "jessie-backports"
+pdns_recursor_packages_state: "present"
+pdns_recursor_update_cache: "yes"
+pdns_recursor_cache_valid_time: 3600
+pdns_recursor_default_release: "jessie-backports"
 
 #
 # configure
 #
-pdns_recursor_configure_template_dest: "/etc/powerdns/recursor.conf"
-pdns_recursor_configure_service_name: "pdns-recursor"
+pdns_recursor_config_file: "/etc/powerdns/recursor.conf"
+pdns_recursor_service_name: "pdns-recursor"

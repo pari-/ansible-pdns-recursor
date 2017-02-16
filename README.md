@@ -32,7 +32,7 @@ Ansible version in use for development: 2.2.1
 The following is a complete example of the overall configuration dict:
 
 ```yaml
-pdns_recursor_configure_config:
+pdns_recursor_config:
   allow-from:
     - "10.0.0.0/8"
     - "172.16.0.0/12"
@@ -135,33 +135,32 @@ becomes:
 ```yaml
 #chroot
 ```
-in `pdns_recursor_configuration_template_dest` 
+in `pdns_recursor_config_file`` 
 
 For more information about each option, please see [Upstream Recursor Settings](https://github.com/PowerDNS/pdns/blob/master/docs/markdown/recursor/settings.md)
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see defaults/main.yml):
+Available variables are listed below, along with default values (see defaults/main.yml) - all variables are prefixed with `pdns_recursor_` (which I deloberately leave out here for formatting reasons).
 
-
-variable | default | type | notes
--------- | ------- | ---- | -----
-`pdns_recursor_configure_config` | `{}` | dict | none
+variable | default | notes
+-------- | ------- | -----
+`config` | `{}` | `tbd`
 
 ### Role Internals
 
-variable | default | type | notes
--------- | ------- | ---- | -----
-`pdns_recursor_prerequisites_apt_repository_repo_list` | `['deb http://ftp.debian.org/debian jessie-backports main']` | list | A list of additional apt repositories to add
-`pdns_recursor_prerequisites_apt_repository_state` | `'present'` | string | A repository source string state
-`pdns_recursor_prerequisites_supported_distribution_release_list` | `['wheezy','jessie','stretch','sid','precise','trusty','xenial','yakkety']` | list | A list of distribution releases supported by this role
-`pdns_recursor_configure_service_name` | `'pdns-recursor'` | string | none
-`pdns_recursor_configure_template_dest` | `'/etc/powerdns/recursor.conf'` | string | Destination of the role's "main configration"-file
-`pdns_recursor_install_apt_cache_valid_time` | `'3600'` | string | Update the apt cache if its older than x seconds
-`pdns_recursor_install_apt_default_release` | `'jessie-backports'` | string | Retrieve packages from a specific  distribution (`apt-get install -t`)
-`pdns_recursor_install_apt_packages` | `['pdns-recursor']` | list | A list of neede packages this role needs
-`pdns_recursor_install_apt_state` | `'present'` | string | An indicator for the desired package('s) state
-`pdns_recursor_install_apt_update_cache` | `'yes'` | string | Run the equivalent of apt-get update before the operation
+variable | default | notes
+-------- | ------- | -----
+`cache_valid_time` | `'3600'` | `tbd`
+`config_file` | `'/etc/powerdns/recursor.conf'` | `tbd`
+`default_release` | `'jessie-backports'` | `tbd`
+`package_list` | `['pdns-recursor']` | `tbd`
+`packages_state` | `'present'` | `tbd`
+`repo_list` | `['deb http://ftp.debian.org/debian jessie-backports main']` | `tbd`
+`repo_state` | `'present'` | `tbd`
+`service_name` | `'pdns-recursor'` | `tbd`
+`supported_distro_list` | `['jessie']` | `tbd`
+`update_cache` | `'yes'` | `tbd`
 
 ## Dependencies
 

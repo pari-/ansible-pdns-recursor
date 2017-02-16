@@ -3,6 +3,6 @@
 - name: generate configuration file
   template: >
     src="etc/powerdns/recursor.conf.j2"
-    dest="{{ pdns_recursor_configure_template_dest }}"
+    dest="{{ pdns_recursor_config_file }}"
   notify:
     - restart pdns_recursor

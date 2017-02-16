@@ -3,10 +3,10 @@
 - name: install packages
   apt: >
     name="{{ item }}"
-    update_cache="{{ pdns_recursor_install_apt_update_cache|default(omit) }}"
-    cache_valid_time="{{ pdns_recursor_install_apt_cache_valid_time|default(omit) }}"
-    state="{{ pdns_recursor_install_apt_state }}"
-    default_release="{{ pdns_recursor_install_apt_default_release }}"
+    update_cache="{{ pdns_recursor_update_cache|default(omit) }}"
+    cache_valid_time="{{ pdns_recursor_cache_valid_time|default(omit) }}"
+    state="{{ pdns_recursor_packages_state }}"
+    default_release="{{ pdns_recursor_default_release }}"
   with_items:
-    - "{{ pdns_recursor_install_apt_packages }}"
+    - "{{ pdns_recursor_package_list }}"
 

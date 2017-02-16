@@ -1,15 +1,15 @@
 {{ '#' }} {{ ansible_managed }}
 
-{% for param in pdns_recursor_configure_config|sort %}
-{% if pdns_recursor_configure_config[param] is defined %}
-{% if pdns_recursor_configure_config[param] is string %}
-{{ param }}={{ pdns_recursor_configure_config[param]|lower }}
-{% elif pdns_recursor_configure_config[param] is number %}
-{{ param }}={{ pdns_recursor_configure_config[param]|lower }}
-{% elif pdns_recursor_configure_config[param] is iterable %}
-{{ param }}={{ pdns_recursor_configure_config[param]|sort|join(',') }}
+{% for option in pdns_recursor_config|sort %}
+{% if pdns_recursor_config[option] is defined %}
+{% if pdns_recursor_config[option] is string %}
+{{ option }}={{ pdns_recursor_config[option]|lower }}
+{% elif pdns_recursor_config[option] is number %}
+{{ option }}={{ pdns_recursor_config[option]|lower }}
+{% elif pdns_recursor_config[option] is iterable %}
+{{ option }}={{ pdns_recursor_config[option]|sort|join(',') }}
 {% endif %}
 {% else %}
-#{{ param }}
+#{{ option }}
 {% endif %}
 {% endfor %}
