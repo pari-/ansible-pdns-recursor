@@ -31,5 +31,3 @@ pdns_recursor_install_apt_default_release: "jessie-backports"
 #
 pdns_recursor_configure_template_dest: "/etc/powerdns/recursor.conf"
 pdns_recursor_configure_service_name: "pdns-recursor"
-
-pdns_recursor_configure_config:

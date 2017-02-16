@@ -1,12 +1,24 @@
 # pdns-recursor
 
-An Ansible role which installs and configures PowerDNS recursor 
+An Ansible role which installs and configures PowerDNS recursor
+
+<!-- toc -->
+
+- [Requirements](#requirements)
+- [Example](#example)
+- [Role Variables](#role-variables)
+  * [Role Internals](#role-internals)
+- [Dependencies](#dependencies)
+- [License](#license)
+- [Author Information](#author-information)
+
+<!-- tocstop -->
 
 ## Requirements
 
 Currently this role is developed for and tested on Debian GNU/Linux (release: jessie). It is assumed to work on other Debian distributions as well.
 
-Ansible version in use for development: 2.2.0
+Ansible version in use for development: 2.2.1
 
 ## Example
 

@@ -1,15 +1,15 @@
 {{ '#' }} {{ ansible_managed }}
 
-{% for pdns_recursor_config_param in pdns_recursor_config|sort %}
-{% if pdns_recursor_config[pdns_recursor_config_param] is defined %}
-{% if pdns_recursor_config[pdns_recursor_config_param] is string %}
-{{ pdns_recursor_config_param }}={{ pdns_recursor_config[pdns_recursor_config_param]|lower }}
-{% elif pdns_recursor_config[pdns_recursor_config_param] is number %}
-{{ pdns_recursor_config_param }}={{ pdns_recursor_config[pdns_recursor_config_param]|lower }}
-{% elif pdns_recursor_config[pdns_recursor_config_param] is iterable %}
-{{ pdns_recursor_config_param }}={{ pdns_recursor_config[pdns_recursor_config_param]|sort|join(',') }}
+{% for param in pdns_recursor_configure_config|sort %}
+{% if pdns_recursor_configure_config[param] is defined %}
+{% if pdns_recursor_configure_config[param] is string %}
+{{ param }}={{ pdns_recursor_configure_config[param]|lower }}
+{% elif pdns_recursor_configure_config[param] is number %}
+{{ param }}={{ pdns_recursor_configure_config[param]|lower }}
+{% elif pdns_recursor_configure_config[param] is iterable %}
+{{ param }}={{ pdns_recursor_configure_config[param]|sort|join(',') }}
 {% endif %}
 {% else %}
-#{{ pdns_recursor_config_param }}
+#{{ param }}
 {% endif %}
 {% endfor %}
