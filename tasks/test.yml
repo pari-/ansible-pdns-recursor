@@ -1,6 +1,11 @@
 ---
 
-- name: trying to using the recursor functionality 
+- name: install bind9-host used for testing
+  include: install.yml
+  vars:
+    pdns_recursor_package_list: ["bind9-host"]
+
+- name: trying to using the recursor functionality
   command: |
     "{{ pdns_recursor_host_bin }}" -t A -W "{{ pdns_recursor_host_timeout }}" "{{ pdns_recursor_host_target }}" 127.0.0.1
   register: dns_resolving_result
