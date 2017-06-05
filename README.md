@@ -1,166 +1,105 @@
 # pdns-recursor
 
+[![Build Status](https://travis-ci.org/pari-/ansible-pdns-recursor.svg?branch=master)](https://travis-ci.org/pari-/ansible-pdns-recursor)
+
 An Ansible role which installs and configures PowerDNS recursor
 
 <!-- toc -->
-
-- [Requirements](#requirements)
-- [Example](#example)
-- [Role Variables](#role-variables)
-  * [Role Internals](#role-internals)
-- [Dependencies](#dependencies)
-- [License](#license)
-- [Author Information](#author-information)
-
-<!-- tocstop -->
 
 ## Requirements
 
 Currently this role is developed for and tested on Debian GNU/Linux (release: jessie). It is assumed to work on other Debian distributions as well.
 
-Ansible version in use for development: 2.2.1
+Ansible version compatibility:
+
+- __2.3.1.0__ (current version in use for development of this role) 
+- 2.2.3.0
+- 2.1.6.0
+- 2.0.2.0
 
 ## Example
 
 ```yaml
-- hosts: pdns-recursors
+---
 
-  roles: 
-    - { role: ansible-pdns-recursor }
+- hosts: "{{ hosts_group | default('all') }}"
+
+  vars:
+
+  roles:
+    - { role: "{{ role_name | default('ansible-pdns_recursor') }}", tags: ['pdns_recursor'] }
+
 ```
 
-The following is a complete example of the overall configuration dict:
+The following shows an example regarding the usage of `pdns_server_config_opts`:
 
 ```yaml
-pdns_recursor_config:
-  allow-from:
-    - "10.0.0.0/8"
-    - "172.16.0.0/12"
-    - "192.168.0.0/16"
-  allow-from-file:
-  any-to-tcp: "no"
-  auth-zones:
-  carbon-interval: 30
-  carbon-ourname:
-  carbon-server:
-  chroot:
-  client-tcp-timeout: 2
-  config-dir:
-  config-name:
-  daemon: "yes"
-  delegation-only:
-  disable-edns: "yes"
-  disable-packetcache: "no"
-  dont-query:
-    - "127.0.0.0/8"
-    - "10.0.0.0/8"
-    - "100.64.0.0/10"
-    - "169.254.0.0/16"
-    - "192.168.0.0/16"
-    - "192.0.0.0/24"
-    - "192.0.2.0/24"
-    - "198.51.100.0/24"
-    - "203.0.113.0/24"
-    - "240.0.0.0/4"
-    - "172.16.0.0/12"
-    - "0.0.0.0/8"
-    - "::1/128"
-    - "fc00::/7"
-    - "fe80::/10"
-    - "::/96,"
-    - "::ffff:0:0/96"
-    - "100::/64"
-    - "2001:db8::/32"
-  entropy-source: "/dev/urandom"
-  etc-hosts-file: "/etc/hosts"
-  export-etc-hosts: "no"
-  export-etc-hosts-search-suffix:
-  forward-zones:
-  forward-zones-file:
-  forward-zones-recurse:
-  hint-file:
-  include-dir:
-  latency-statistic-size: 10000
-  local-address: "127.0.0.1"
-  local-port: 53
-  log-common-errors: "no"
-  logging-facility:
-  loglevel: 4
-  lua-dns-script:
-  max-cache-entries: 1000000
-  max-cache-ttl: 86400
-  max-mthreads: 2048
-  max-negative-ttl: 3600
-  max-packetcache-entries: 500000
-  max-tcp-clients: 128
-  max-tcp-per-client: 0
-  minimum-ttl-override: 0
-  network-timeout: 1500
-  packetcache-servfail-ttl: 60
-  packetcache-ttl: 3600
-  pdns-distributes-queries: "no"
-  query-local-address: "0.0.0.0"
-  query-local-address6:
-  quiet: "yes"
-  serve-rfc1918: "yes"
-  server-down-max-fails: 64
-  server-down-throttle-time: 60
-  server-id: "{{ ansible_fqdn }}"
-  setgid:
-  setuid:
-  single-socket: "no"
-  socket-dir:
-  socket-owner:
-  socket-group:
-  socket-mode:
-  spoof-nearmiss-max: 20
-  stack-size: 200000
-  threads: 2
-  trace: "no"
-  udp-truncation-threshold: 1680
-  version:
-  version-string: "powerdns recursor version number"
+---
+
+- hosts: "{{ hosts_group | default('all') }}"
+
+  vars:
+    pdns_recursor_config_opts:
+      allow-from:
+        - "127.0.0.0/8"
+        - "10.0.0.0/8"
+        - "168.63.129.16"
+      client-tcp-timeout: 2
+      config-dir: "/etc/powerdns/"
+      daemon: "yes"
+      forward-zones-recurse: ".=8.8.4.4;8.8.8.8"
+      local-address: "127.0.0.1,{{ ansible_default_ipv4.address }}"
+      local-port: 53
+      log-common-errors: "yes"
+      logging-facility: 0
+      loglevel: 3
+      max-cache-entries: 1000000
+      max-cache-ttl: 86400
+      max-mthreads: 2048
+      max-negative-ttl: 0
+      max-packetcache-entries: 500000
+      max-tcp-clients: 128
+      max-tcp-per-client: 0
+      network-timeout: 1500
+      packetcache-servfail-ttl: 60
+      packetcache-ttl: 3600
+      pdns-distributes-queries: "no"
+      query-local-address: "{{ ansible_default_ipv4.address }}"
+      quiet: "yes"
+      security-poll-suffix: ""
+      serve-rfc1918: "yes"
+      setgid: "pdns"
+      setuid: "pdns"
+      single-socket: "no"
+      socket-dir: "/var/run/"
+      threads: 2
+      trace: "no"
+
+  roles:
+    - { role: "{{ role_name | default('ansible-pdns_recursor') }}", tags: ['pdns_recursor'] }
 ```
-
-__blank keys will be converted to comments i.e.__
-
-```yaml
-...
-chroot:
-...
-```
-
-becomes:
-
-```yaml
-#chroot
-```
-in `pdns_recursor_config_file`` 
-
-For more information about each option, please see [Upstream Recursor Settings](https://github.com/PowerDNS/pdns/blob/master/docs/markdown/recursor/settings.md)
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see defaults/main.yml) - all variables are prefixed with `pdns_recursor_` (which I deloberately leave out here for formatting reasons).
+Available variables are listed below, along with default values (see defaults/main.yml). They're generally prefixed with `pdns_recursor_` (which I deliberately leave out here for better formatting).
 
 variable | default | notes
 -------- | ------- | -----
-`config` | `{}` | `tbd`
-
-### Role Internals
-
-variable | default | notes
--------- | ------- | -----
-`cache_valid_time` | `'3600'` | `tbd`
-`config_file` | `'/etc/powerdns/recursor.conf'` | `tbd`
-`default_release` | `'jessie-backports'` | `tbd`
-`package_list` | `['pdns-recursor']` | `tbd`
-`packages_state` | `'present'` | `tbd`
-`repo_list` | `['deb http://ftp.debian.org/debian jessie-backports main']` | `tbd`
-`repo_state` | `'present'` | `tbd`
-`service_name` | `'pdns-recursor'` | `tbd`
-`supported_distro_list` | `['jessie']` | `tbd`
-`update_cache` | `'yes'` | `tbd`
+`cache_valid_time` | `3600` | `Update the apt cache if its older than the set value (in seconds)`
+`config_file` | `/etc/powerdns/recursor.conf` | `Absolute path to pdns_recursor's configuration file`
+`config_opts` | `` | `Configuration hash holding pdns-recursors's configuration optons`
+`default_release` | `jessie` | `The default release to install packages from`
+`host_bin` | `/usr/bin/host` | `Absolute path to the the 'host'-binary`
+`host_timeout` | `5` | `A resolving timeout (in seconds)`
+`host_target` | `galaxy.ansible.com` | `The target which is tried to become resolved in the test run`
+`package_list` | `['pdns_recursor']` | `The list of packages to be installed`
+`pre_default_release` | `{{ pdns_recursor_default_release }}` | `The default release to install packages (pre_package_list) from`
+`pre_package_list` | `[]` | `The list of prerequisite packages to be installed`
+`repo_list` | `[]` | `Source string for the repositories`
+`run_tests` | `True` | `If true, try to determine the installed application's functionality`
+`service_name` | `pdns-recursor` | `Name of the (pdns_recursor) service`
+`supported_distro_list` | `['jessie']` | `A list of distribution releases this role supports`
+`update_cache` | `yes` | `Run the equivalent of apt-get update before the operation`
 
 ## Dependencies
 

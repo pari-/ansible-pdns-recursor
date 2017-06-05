@@ -1,0 +1,11 @@
+---
+
+- name: trying to using the recursor functionality 
+  command: |
+    "{{ pdns_recursor_host_bin }}" -t A -W "{{ pdns_recursor_host_timeout }}" "{{ pdns_recursor_host_target }}" 127.0.0.1
+  register: dns_resolving_result
+  ignore_errors: True
+  changed_when: False
+
+- debug:
+    msg: "{{ dns_resolving_result.stdout_lines }}"

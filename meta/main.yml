@@ -1,9 +1,18 @@
+---
+
 galaxy_info:
-  author: Patrick Ringl
-  description: An Ansible role which installs and configures PowerDNS recursor 
-  license: MIT
-  galaxy_tags:
-    - Recursor
-    - PDNS
-    - PowerDNS
+  author: "Patrick Ringl"
   dependencies: []
+  description: "An Ansible role which installs and configures PowerDNS recursor"
+  galaxy_tags:
+    - "pdns_recursor"
+    - "pdns"
+    - "powerdns"
+    - "dns"
+    - "recursor"
+  license: "MIT"
+  min_ansible_version: "2.0.2.0"
+  platforms:
+    - name: "Debian"
+      versions:
+        - "jessie"

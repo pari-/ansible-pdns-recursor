@@ -1,8 +1,14 @@
 ---
 
 - name: generate configuration file
-  template: >
-    src="etc/powerdns/recursor.conf.j2"
-    dest="{{ pdns_recursor_config_file }}"
+  template:
+    src: "etc/powerdns/recursor.conf.j2"
+    dest: "{{ pdns_recursor_config_file }}"
   notify:
-    - restart pdns_recursor
+    - "restart pdns_recursor"
+
+- name: ensure the service is started and enabled at boot
+  service:
+    name: "{{ pdns_recursor_service_name }}"
+    state: started
+    enabled: yes
