@@ -37,17 +37,17 @@ pdns_recursor_config_opts:
   socket-dir: "/var/run/"
   threads: 2
   trace: "no"
-pdns_recursor_default_release: "jessie"
-pdns_recursor_host_bin: "/usr/bin/host"
-pdns_recursor_host_timeout: 5
-pdns_recursor_host_target: "galaxy.ansible.com"
+pdns_recursor_default_release: "{{ ansible_distribution_release|lower }}"
 pdns_recursor_package_list:
   - "pdns-recursor"
+  - "dnsutils"
 pdns_recursor_pre_default_release: "{{ pdns_recursor_default_release }}"
-pdns_recursor_pre_package_list: []
+pdns_recursor_pre_package_list:
+  - "apt-transport-https"
+  - "ca-certificates"
 pdns_recursor_repo_list: []
-pdns_recursor_run_tests: True
 pdns_recursor_service_name: "pdns-recursor"
 pdns_recursor_supported_distro_list:
   - "jessie"
+  - "stretch"
 pdns_recursor_update_cache: "yes"
