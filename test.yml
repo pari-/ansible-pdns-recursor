@@ -1,8 +1,15 @@
 ---
 
-- hosts: "{{ hosts_group | default('all') }}"
-
+- hosts: "all"
   vars:
-
+    _timeout: 5
+    _host: "google.com"
   roles:
-    - { role: "{{ role_name | default('ansible-pdns-recursor') }}", tags: ['pdns_recursor'] }
+    - role: "ansible-pdns-recursor"
+      tags:
+        - "pdns-recursor"
+  post_tasks:
+    - block:
+        - include: "tests/test_dns_resolving.yml"
+      tags:
+        - "tests"

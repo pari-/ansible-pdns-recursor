@@ -1,0 +1,10 @@
+---
+
+- name: "test DNS resolving"
+  command: "/usr/bin/dig +short A {{ _host }} +time={{ _timeout }} @127.0.0.1"
+  register: "_result"
+  ignore_errors: True
+  changed_when: False
+
+- debug:
+    msg: "{{ _result.stdout_lines }}"
