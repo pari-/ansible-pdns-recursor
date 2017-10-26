@@ -53,7 +53,7 @@ variable | default | notes
 -------- | ------- | -----
 `cache_valid_time` | `3600` | `Update the apt cache if its older than the set value (in seconds)`
 `config_file` | `/etc/powerdns/recursor.conf` | `Absolute path to pdns_recursor's configuration file`
-`config_opts` | `` | `Configuration hash holding pdns-recursors's configuration optons`
+`config_opts` | ` ` | `Configuration hash holding pdns-recursors's configuration optons`
 `default_release` | `{{ ansible_distribution_release\|lower }}` | `The default release to install packages from`
 `package_list` | `['pdns_recursor']` | `The list of packages to be installed`
 `pre_default_release` | `{{ pdns_recursor_default_release }}` | `The default release to install packages (pre_package_list) from`
