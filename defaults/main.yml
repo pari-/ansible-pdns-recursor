@@ -48,6 +48,5 @@ pdns_recursor_pre_package_list:
 pdns_recursor_repo_list: []
 pdns_recursor_service_name: "pdns-recursor"
 pdns_recursor_supported_distro_list:
-  - "jessie"
   - "stretch"
 pdns_recursor_update_cache: "yes"
